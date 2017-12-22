@@ -1,0 +1,45 @@
+{
+  "name": "serverless-application-demo",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Wassim Chegham (@manekinekko)"
+  },
+  "scripts": {
+    "deploy:all": "npm run deploy:processImage && npm run deploy:translateText && npm run deploy:saveResult && npm run deploy:assistant && npm run deploy:readResult && npm run deploy:twilioCall",
+    "deploy:processImage": "gcloud beta functions deploy ocr-extract --source https://source.developers.google.com/projects/cloud-function-ocr-demo/repos/cloud-function-ocr-demo/moveable-aliases/master --trigger-bucket cloud-function-ocr-demo__image --entry-point processImage",
+    "deploy:translateText": "gcloud beta functions deploy ocr-translate --source https://source.developers.google.com/projects/cloud-function-ocr-demo/repos/cloud-function-ocr-demo/moveable-aliases/master --trigger-topic TRANSLATE_TOPIC --entry-point translateText",
+    "deploy:saveResult": "gcloud beta functions deploy ocr-save --source https://source.developers.google.com/projects/cloud-function-ocr-demo/repos/cloud-function-ocr-demo/moveable-aliases/master --trigger-topic RESULT_TOPIC --entry-point saveResult",
+    "deploy:readResult": "gcloud beta functions deploy ocr-read --source https://source.developers.google.com/projects/cloud-function-ocr-demo/repos/cloud-function-ocr-demo/moveable-aliases/master --trigger-topic READ_TOPIC --entry-point readResult",
+    "deploy:assistant": "gcloud beta functions deploy ocr-assistant --source https://source.developers.google.com/projects/cloud-function-ocr-demo/repos/cloud-function-ocr-demo/moveable-aliases/master --trigger-http --entry-point assistant",
+    "deploy:twilioCall": "gcloud beta functions deploy ocr-twilio-call --source https://source.developers.google.com/projects/cloud-function-ocr-demo/repos/cloud-function-ocr-demo/moveable-aliases/master --trigger-http --entry-point twilioCall",
+    "deploy:all:local": "npm run deploy:processImage:local && npm run deploy:translateText:local && npm run deploy:saveResult:local && npm run deploy:assistant:local",
+    "deploy:processImage:local": "functions deploy ocr-extract --trigger-bucket cloud-function-ocr-demo__image --entry-point processImage",
+    "deploy:translateText:local": "functions deploy ocr-translate --trigger-topic TRANSLATE_TOPIC --entry-point translateText",
+    "deploy:saveResult:local": "functions deploy ocr-save --trigger-topic RESULT_TOPIC --entry-point saveResult",
+    "deploy:readResult:local": "functions deploy ocr-read --trigger-topic READ_TOPIC --entry-point readResult",
+    "deploy:assistant:local": "functions deploy ocr-assistant --trigger-http --entry-point assistant",
+    "ngrok": "ngrok http -subdomain=cloud-function 8010"
+  },
+  "dependencies": {
+    "@google-cloud/functions-emulator": "^1.0.0-alpha.25",
+    "@google-cloud/pubsub": "0.13.2",
+    "@google-cloud/storage": "1.2.1",
+    "@google-cloud/translate": "1.0.0",
+    "@google-cloud/vision": "0.12.0",
+    "actions-on-google": "^1.5.1",
+    "safe-buffer": "5.1.1",
+    "twilio": "^3.9.3",
+    "ngrok": "^2.2.24"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "1.4.17",
+    "proxyquire": "1.8.0",
+    "sinon": "3.2.1"
+  },
+  "cloud-repo-tools": {
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
+}
