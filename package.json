@@ -23,15 +23,15 @@
     "ngrok": "ngrok http -subdomain=cloud-function 8010"
   },
   "dependencies": {
-    "@google-cloud/functions-emulator": "^1.0.0-alpha.25",
+    "@google-cloud/functions-emulator": "1.0.0-alpha.25",
     "@google-cloud/pubsub": "0.13.2",
     "@google-cloud/storage": "1.2.1",
     "@google-cloud/translate": "1.0.0",
     "@google-cloud/vision": "0.12.0",
-    "actions-on-google": "^1.5.1",
+    "actions-on-google": "1.5.1",
     "safe-buffer": "5.1.1",
-    "twilio": "^3.9.3",
-    "ngrok": "^2.2.24"
+    "twilio": "3.9.3",
+    "ngrok": "2.2.26"
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "1.4.17",
