@@ -36,7 +36,7 @@
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "1.4.17",
     "proxyquire": "1.8.0",
-    "sinon": "3.2.1"
+    "sinon": "3.3.0"
   },
   "cloud-repo-tools": {
     "requiresKeyFile": true,
