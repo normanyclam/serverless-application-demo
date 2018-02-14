@@ -23,7 +23,7 @@
     "ngrok": "ngrok http -subdomain=cloud-function 8010"
   },
   "dependencies": {
-    "@google-cloud/functions-emulator": "1.0.0-alpha.25",
+    "@google-cloud/functions-emulator": "1.0.0-alpha.29",
     "@google-cloud/pubsub": "0.13.2",
     "@google-cloud/storage": "1.2.1",
     "@google-cloud/translate": "1.0.0",
