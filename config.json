@@ -4,7 +4,7 @@
   "RESULT_BUCKET": "cloud-function-ocr-demo__text",
   "TRANSLATE_TOPIC": "TRANSLATE_TOPIC",
   "TRANSLATE": false,
-  "TO_LANG": ["en"],
+  "TO_LANG": ["en"]
   //"TWILIO": {
     //"accountSid": "xxxxxxxxxxx",
     //"authToken": "xxxxxxxxxxxx"
