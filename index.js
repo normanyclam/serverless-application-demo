@@ -16,6 +16,8 @@ const translate = require('@google-cloud/translate')();
 const aog = require('actions-on-google');
 const DialogflowApp = aog.DialogflowApp;
 
+/** hide Twilio
+  *
 const Twilio = require('twilio');
 const VoiceResponse = Twilio.twiml.VoiceResponse;
 const TwilioClient = new Twilio(
@@ -46,9 +48,9 @@ function publishResult(topicName, data) {
 function detectText(bucketName, filename) {
   let text;
 
-  console.log(`Looking for text in image ${filename}`);
+  console.log(`Looking for text in image '7elevenReceipt.jpg'`);
   return vision
-    .textDetection({ source: { imageUri: `gs://${bucketName}/${filename}` } })
+    .textDetection({ source: { imageUri: `gs://cloud-function-ocr-demo_image/7elevenReceipt.jpg` } })
     .then(([detections]) => {
       const annotation = detections.textAnnotations[0];
       text = annotation ? annotation.description : '';
@@ -59,7 +61,7 @@ function detectText(bucketName, filename) {
       if (Array.isArray(detection)) {
         detection = detection[0];
       }
-      console.log(`Detected language "${detection.language}" for ${filename}`);
+      console.log(`Detected language "${detection.language}" for '7elevenReceipt.jpg'`);
 
       // Submit a message to the bus for each language we're going to translate to
       const tasks = config.TO_LANG.map(lang => {
@@ -89,7 +91,7 @@ function detectText(bucketName, filename) {
  * @returns {string} The new filename.
  */
 function renameFile(filename, lang) {
-  return `${filename}_to_${lang}.txt`;
+  return `7elevenReceipt.jpg_to_${lang}.txt`;
 }
 
 /**
@@ -218,7 +220,7 @@ exports.saveResult = function saveResult(event) {
       const filename = renameFile(payload.filename, payload.lang);
       const file = storage.bucket(bucketName).file(filename);
 
-      console.log(`Saving result to ${filename} in bucket ${bucketName}`);
+      console.log(`Saving result to '7elevenReceipt.jpg' in bucket 'cloud-function-ocr-demo_image'`);
 
       return file.save(payload.text).then(_ => {
         setTimeout(_ => {
@@ -281,7 +283,7 @@ function readFromBucket(payload) {
   const bucketName = config.RESULT_BUCKET;
 
   console.log(
-    `reading from bucket ${bucketName} request to read file ${filename}`
+    `reading from bucket 'cloud-function-ocr-demo_image' request to read file '7elevenReceipt.jpg'`
   );
 
   const file = storage.bucket(bucketName).file(filename);
