@@ -5,8 +5,8 @@
   "TRANSLATE_TOPIC": "TRANSLATE_TOPIC",
   "TRANSLATE": false,
   "TO_LANG": ["en"],
-  "TWILIO": {
-    "accountSid": "xxxxxxxxxxx",
-    "authToken": "xxxxxxxxxxxx"
+  //"TWILIO": {
+    //"accountSid": "xxxxxxxxxxx",
+    //"authToken": "xxxxxxxxxxxx"
   }
 }
